@@ -51,10 +51,21 @@ PROJECT_APPS = [
     "accounts",
 ]
 
-THIRD_PARTY_APPS = []
+THIRD_PARTY_APPS = [
+    "crispy_forms",
+    "crispy_bootstrap5",
+]
 
 # Combine all apps into a single list
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
+
+
+
+
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
