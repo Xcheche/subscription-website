@@ -49,6 +49,8 @@ DJANGO_APPS = [
 PROJECT_APPS = [
     # Add your project-specific apps here
     "accounts",
+    "writer",
+    "client",
 ]
 
 THIRD_PARTY_APPS = [

@@ -5,65 +5,55 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate,login as auth_login
 
 # Create your views here.
-
+#Home
 def home(request):
     return render(request, "accounts/index.html")
 
-def login_view(request):
-    pass
 
-def logout_view(request):
-    pass
 
+# Register
 def register(request):
     if request.method == "POST":
         form = CreateUserForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("login")
+            return redirect("login_view")
     else:
         form = CreateUserForm()
 
     return render(request, "accounts/register.html", {"form": form})
 
 
-def my_login(request):
 
+
+
+
+
+
+# Login
+def login_view(request):
     form = AuthenticationForm()
-
     if request.method == "POST":
-
         form = AuthenticationForm(request, data=request.POST)
-
         if form.is_valid():
-
-            username = request.POST.get('username') # Username / Email
+            username = request.POST.get('username')  # Username / Email
             password = request.POST.get('password')
-
-            # Username / Email
-
             user = authenticate(request, username=username, password=password)
-
-            if user is not None and user.is_writer==True:
-
+            if user is not None and user.is_writer:
                 login(request, user)
-
                 return redirect('writer-dashboard')
-
-
-            if user is not None and user.is_writer==False:
-
+            if user is not None and not user.is_writer:
                 login(request, user)
-
                 return redirect('client-dashboard')
-
-
-    context = {'LoginForm': form}
-
+    context = {'form': form}
     return render(request, 'accounts/login.html', context)
 
-def user_logout(request):
+
+
+
+# Logout
+def logout_view(request):
 
     logout(request)
 
-    return redirect("login")
+    return redirect("login_view")

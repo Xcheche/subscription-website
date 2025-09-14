@@ -6,8 +6,8 @@ from . import views
 
 urlpatterns = [
     #Auth routes
-    path("login/", views.login_view, name="login"),
-    path("logout/", views.logout_view, name="logout"),
+    path("login/", views.login_view, name="login_view"),
+    path("logout/", views.logout_view, name="logout_view"),
     path("register/", views.register, name="register"),
     #Other routes
     path("", views.home, name="home"),

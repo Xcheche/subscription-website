@@ -12,16 +12,18 @@ class CustomUserInline(admin.TabularInline):
     extra = 1
 
 class CustomUserAdmin(BaseUserAdmin):
-    list_display = ('email',  'first_name', 'last_name', 'is_staff', 'is_active','date_joined')
+    list_display = ('email',  'first_name', 'last_name', 'is_staff', 'is_active','date_joined', 'is_writer')
     search_fields = ('email', 'first_name')
     readonly_fields = ('date_joined', )
     ordering = ('email',)
 
     filter_horizontal = ()
-    list_filter = ('is_staff', 'is_active',)
+    list_filter = ('is_staff', 'is_active', 'is_writer')
+    list_editable = ('is_staff', 'is_active', 'is_writer')
+    ordering = ('email',)
     fieldsets = (
         (None, {'fields': ('email','first_name', 'last_name','password')}),
-        ('Permissions', {'fields': ('is_staff', 'is_active',)}),
+        ('Permissions', {'fields': ('is_staff', 'is_active','is_writer')}),
         ('Important dates', {'fields': ('date_joined',)}),
     )
     add_fieldsets = (
